@@ -12,7 +12,7 @@ def read_requirements():
         return [line.strip() for line in fh if line.strip() and not line.startswith("#")]
 
 setup(
-    name="llm-python-boilerplate",
+    name="ultimate-llm-toolkit",
     version="1.0.0",
     author="Alessio",
     author_email="your.email@example.com",

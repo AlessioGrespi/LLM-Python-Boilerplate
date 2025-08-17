@@ -3,7 +3,7 @@ requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "llm-python-boilerplate"
+name = "ultimate-llm-toolkit"
 dynamic = ["version"]
 description = "A comprehensive LLM inference toolkit with multi-provider support and tool integration"
 readme = "README.md"
