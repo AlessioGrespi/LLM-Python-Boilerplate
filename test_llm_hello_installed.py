@@ -1,23 +1,24 @@
 #!/usr/bin/env python3
 """
-Simple test script to verify the LLM-Python-Boilerplate library works.
-This script will ask an LLM to say "hello world" using Mistral Small.
+Test script for the installed LLM-Python-Boilerplate library.
+This script will ask LLMs to say "hello world" using both AWS Bedrock and Azure OpenAI.
+
+Use this script in any repository where you have installed the library via pip:
+pip install ultimate-llm-toolkit
+
+Or install from source:
+pip install -e /path/to/LLM-Python-Boilerplate
 """
 
 import os
-import sys
-
-# Add the src directory to the Python path so we can import from local source
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'src'))
-
 from ultimate_llm_toolkit import LLMToolkit
 from ultimate_llm_toolkit.model_router import model_router
 
 def test_llm_hello():
     """Test the LLM library by asking it to say hello world."""
     
-    print("🤖 Testing LLM-Python-Boilerplate Library")
-    print("=" * 50)
+    print("🤖 Testing LLM-Python-Boilerplate Library (Installed Version)")
+    print("=" * 60)
     
     try:
         # Method 1: Using the LLMToolkit class (recommended)
@@ -60,6 +61,7 @@ def test_llm_hello():
         print("-" * 50)
         
         print("✅ AWS Bedrock test completed successfully!")
+        return True
         
     except Exception as e:
         print(f"❌ AWS Bedrock test failed: {str(e)}")
@@ -70,6 +72,7 @@ def test_llm_hello():
         print("\n🔧 Environment variables needed:")
         print("   For AWS Bedrock: AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_REGION")
         print("   For Azure OpenAI: AZURE_OPENAI_API_KEY, AZURE_OPENAI_ENDPOINT")
+        return False
 
 def test_azure_openai():
     """Test Azure OpenAI by asking it to say hello world."""
@@ -130,7 +133,7 @@ def test_azure_openai():
         print(f"❌ Azure OpenAI test failed: {str(e)}")
         print("\n💡 Make sure you have:")
         print("   - Set AZURE_OPENAI_API_KEY in your .env file")
-        print("   - Set AZURE_OPENAI_ENDPOINT if using a custom endpoint")
+        print("   - Set AZURE_OPENAI_ENDPOINT (required)")
         print("   - Set DEPLOYMENT_NAME if using a custom deployment")
         return False
 
@@ -157,24 +160,69 @@ def test_simple_import():
         
     except Exception as e:
         print(f"❌ Import error: {e}")
+        print("\n💡 Make sure you have installed the library:")
+        print("   pip install ultimate-llm-toolkit")
+        print("   or")
+        print("   pip install -e /path/to/LLM-Python-Boilerplate")
         return False
 
+def show_environment_info():
+    """Show information about the current environment and library."""
+    print("\n🔍 Environment Information:")
+    print("=" * 50)
+    
+    # Check if .env file exists
+    env_file = ".env"
+    if os.path.exists(env_file):
+        print(f"✅ .env file found: {os.path.abspath(env_file)}")
+        
+        # Check AWS credentials
+        aws_key = os.getenv("AWS_ACCESS_KEY_ID")
+        aws_secret = os.getenv("AWS_SECRET_ACCESS_KEY")
+        aws_region = os.getenv("AWS_REGION")
+        
+        print(f"   AWS_ACCESS_KEY_ID: {'✅ Set' if aws_key else '❌ Not set'}")
+        print(f"   AWS_SECRET_ACCESS_KEY: {'✅ Set' if aws_secret else '❌ Not set'}")
+        print(f"   AWS_REGION: {'✅ Set' if aws_region else '❌ Not set'}")
+        
+        # Check Azure credentials
+        azure_key = os.getenv("AZURE_OPENAI_API_KEY")
+        azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
+        
+        print(f"   AZURE_OPENAI_API_KEY: {'✅ Set' if azure_key else '❌ Not set'}")
+        print(f"   AZURE_OPENAI_ENDPOINT: {'✅ Set' if azure_endpoint else '❌ Not set'}")
+        
+    else:
+        print(f"⚠️  .env file not found in current directory")
+        print(f"   Current directory: {os.getcwd()}")
+        print(f"   Create a .env file with your API credentials")
+    
+    # Show library version info
+    try:
+        import ultimate_llm_toolkit
+        print(f"📦 Library location: {ultimate_llm_toolkit.__file__}")
+    except Exception as e:
+        print(f"❌ Could not determine library location: {e}")
+
 if __name__ == "__main__":
-    print("🚀 Starting LLM-Python-Boilerplate Library Tests\n")
+    print("🚀 Starting LLM-Python-Boilerplate Library Tests (Installed Version)\n")
+    
+    # Show environment information
+    show_environment_info()
     
     # First test imports
     if test_simple_import():
-        print("\n" + "="*50)
+        print("\n" + "="*60)
         # Then test actual LLM functionality
-        test_llm_hello()
+        aws_success = test_llm_hello()
         
         # Test Azure OpenAI if credentials are available
-        test_azure_openai()
+        azure_success = test_azure_openai()
         
         # Show available models summary
-        print("\n" + "="*50)
+        print("\n" + "="*60)
         print("📋 Available Models Summary:")
-        print("=" * 50)
+        print("=" * 60)
         try:
             toolkit = LLMToolkit()
             available_models = toolkit.list_models()
@@ -183,7 +231,24 @@ if __name__ == "__main__":
         except Exception as e:
             print(f"  ❌ Could not retrieve model list: {str(e)}")
         
-        print("\n🎉 All tests completed!")
+        # Final summary
+        print("\n" + "="*60)
+        print("🎯 Test Results Summary:")
+        print("=" * 60)
+        print(f"  AWS Bedrock: {'✅ PASSED' if aws_success else '❌ FAILED'}")
+        print(f"  Azure OpenAI: {'✅ PASSED' if azure_success else '❌ FAILED'}")
+        
+        if aws_success and azure_success:
+            print("\n🎉 All tests passed! Your LLM-Python-Boilerplate library is working perfectly!")
+        elif aws_success or azure_success:
+            print("\n⚠️  Partial success. Some tests passed, some failed.")
+        else:
+            print("\n❌ All tests failed. Please check your configuration.")
         
     else:
         print("\n❌ Import test failed. Cannot proceed with LLM tests.")
+        print("\n📋 Installation Instructions:")
+        print("   1. Install the library: pip install ultimate-llm-toolkit")
+        print("   2. Or install from source: pip install -e /path/to/LLM-Python-Boilerplate")
+        print("   3. Set up your .env file with API credentials")
+        print("   4. Run this script again")

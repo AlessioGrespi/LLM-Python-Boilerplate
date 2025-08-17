@@ -7,7 +7,7 @@ from openai import AzureOpenAI
 # Load environment variables from .env file
 load_dotenv()
 
-endpoint = os.getenv("ENDPOINT_URL", "https://azure-is-ass.openai.azure.com/")
+endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
 deployment = os.getenv("DEPLOYMENT_NAME", "gpt-4.1-mini")
 subscription_key = os.getenv("AZURE_OPENAI_API_KEY")
 
@@ -16,6 +16,9 @@ def get_client():
     """Get Azure OpenAI client, initializing it when needed."""
     if not subscription_key:
         raise ValueError("AZURE_OPENAI_API_KEY environment variable is required. Please set it in your .env file.")
+    
+    if not endpoint:
+        raise ValueError("AZURE_OPENAI_ENDPOINT environment variable is required. Please set it in your .env file.")
     
     return AzureOpenAI(
         azure_endpoint=endpoint,
