@@ -11,16 +11,20 @@ endpoint = os.getenv("ENDPOINT_URL", "https://azure-is-ass.openai.azure.com/")
 deployment = os.getenv("DEPLOYMENT_NAME", "gpt-4.1-mini")
 subscription_key = os.getenv("AZURE_OPENAI_API_KEY")
 
-# Validate that the API key is provided
-if not subscription_key:
-    raise ValueError("AZURE_OPENAI_API_KEY environment variable is required. Please set it in your .env file.")
-
 # Initialize Azure OpenAI client with key-based authentication
-client = AzureOpenAI(
-    azure_endpoint=endpoint,
-    api_key=subscription_key,
-    api_version="2025-01-01-preview",
-)
+def get_client():
+    """Get Azure OpenAI client, initializing it when needed."""
+    if not subscription_key:
+        raise ValueError("AZURE_OPENAI_API_KEY environment variable is required. Please set it in your .env file.")
+    
+    return AzureOpenAI(
+        azure_endpoint=endpoint,
+        api_key=subscription_key,
+        api_version="2025-01-01-preview",
+    )
+
+# Create client instance (will be created when first accessed)
+client = None
 
 # IMAGE_PATH = "YOUR_IMAGE_PATH"
 # encoded_image = base64.b64encode(open(IMAGE_PATH, 'rb').read()).decode('ascii')

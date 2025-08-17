@@ -12,17 +12,17 @@ def read_requirements():
         return [line.strip() for line in fh if line.strip() and not line.startswith("#")]
 
 setup(
-    name="ultimate-llm-toolkit",
+    name="llm-python-boilerplate",
     version="1.0.0",
     author="Alessio",
     author_email="your.email@example.com",
     description="A comprehensive LLM inference toolkit with multi-provider support and tool integration",
     long_description=read_readme(),
     long_description_content_type="text/markdown",
-    url="https://github.com/yourusername/Ultimate-AI-Personal-Assistant",
+    url="https://github.com/AlessioGrespi/LLM-Python-Boilerplate",
     project_urls={
-        "Bug Tracker": "https://github.com/yourusername/Ultimate-AI-Personal-Assistant/issues",
-        "Documentation": "https://github.com/yourusername/Ultimate-AI-Personal-Assistant#readme",
+        "Bug Tracker": "https://github.com/AlessioGrespi/LLM-Python-Boilerplate/issues",
+        "Documentation": "https://github.com/AlessioGrespi/LLM-Python-Boilerplate#readme",
     },
     classifiers=[
         "Development Status :: 4 - Beta",
@@ -56,11 +56,7 @@ setup(
             "pyttsx3>=2.90",
         ],
     },
-    entry_points={
-        "console_scripts": [
-            "ultimate-llm=ultimate_llm_toolkit.cli:main",
-        ],
-    },
+
     include_package_data=True,
     zip_safe=False,
 )

@@ -2,7 +2,7 @@
 
 ## 🎭 Overview
 
-This directory contains interactive demo scripts that allow you to test the Ultimate AI Personal Assistant tools and conversation capabilities in real-time.
+This directory contains interactive demo scripts that allow you to test the LLM Python Boilerplate tools and conversation capabilities in real-time.
 
 ## 📋 Available Demos
 

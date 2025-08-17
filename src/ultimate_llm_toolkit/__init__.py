@@ -33,7 +33,7 @@ from .model_router import (
     add_model_mapping
 )
 
-from .azure import client as azure_client
+from .azure import get_client
 from .aws_bedrock import bedrock_client
 
 # Tool imports
@@ -46,8 +46,8 @@ from .bbc_rss import (
 
 from .wikipedia_api import (
     search_wikipedia,
-    get_wikipedia_summary,
-    get_wikipedia_content
+    get_wikipedia_page,
+    get_multiple_people_wikipedia_pages
 )
 
 # Main toolkit class
@@ -64,7 +64,7 @@ __all__ = [
     'add_model_mapping',
     
     # Clients
-    'azure_client',
+    'get_client',
     'bedrock_client',
     
     # Tools
@@ -73,6 +73,6 @@ __all__ = [
     'get_bbc_public_figures',
     'get_bbc_rss_feed',
     'search_wikipedia',
-    'get_wikipedia_summary',
-    'get_wikipedia_content',
+    'get_wikipedia_page',
+    'get_multiple_people_wikipedia_pages',
 ] 

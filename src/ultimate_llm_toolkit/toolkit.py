@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 
 from .model_router import model_router, list_available_models
 from .bbc_rss import get_bbc_news_summary, get_bbc_latest_news
-from .wikipedia_api import search_wikipedia, get_wikipedia_summary
+from .wikipedia_api import search_wikipedia, get_wikipedia_page
 
 # Load environment variables
 load_dotenv()

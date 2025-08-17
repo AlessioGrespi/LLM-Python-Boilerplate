@@ -2,7 +2,7 @@
 
 ## 🎭 Overview
 
-This document summarizes the comprehensive conversation testing implemented for the Ultimate AI Personal Assistant, demonstrating single tool calls, chained tool calls, and multi-turn conversations.
+This document summarizes the comprehensive conversation testing implemented for the LLM Python Boilerplate, demonstrating single tool calls, chained tool calls, and multi-turn conversations.
 
 ## 📋 Test Scripts Created
 

@@ -1,9 +1,9 @@
-# Ultimate AI Personal Assistant - Quick Reference
+# LLM Python Boilerplate - Quick Reference
 
 ## Model Router Quick Start
 
 ```python
-from config.model_router import model_router
+from ultimate_llm_toolkit.model_router import model_router
 
 # Basic usage
 response = model_router(
@@ -48,23 +48,23 @@ response = model_router(prompt="...", model="claude-3-haiku")
 
 ### Direct Tool Calls
 ```python
-from tools.tool_modules.bbc_rss import get_bbc_public_figures
-from tools.tool_modules.wikipedia_api import find_person_wikipedia_page
-from tools.tool_modules.web_search_brave import search_web
+from ultimate_llm_toolkit.bbc_rss import get_bbc_public_figures
+from ultimate_llm_toolkit.wikipedia_api import search_wikipedia, get_wikipedia_page
+from ultimate_llm_toolkit import LLMToolkit
 
 # BBC RSS
 bbc_result = get_bbc_public_figures()
 print(f"Found {bbc_result['total_figures']} public figures")
 
 # Wikipedia
-wiki_result = find_person_wikipedia_page("Donald Trump")
+wiki_result = search_wikipedia("Donald Trump", limit=5)
 if wiki_result.get('success'):
-    print(f"Found: {wiki_result['page_info']['title']}")
+    print(f"Found: {wiki_result['results'][0]['title']}")
 
-# Web Search
-search_results = search_web("AI developments", count=5)
-for result in search_results:
-    print(f"Title: {result['title']}")
+# Using the toolkit
+toolkit = LLMToolkit()
+news = toolkit.get_news(category="technology")
+print(f"Latest tech news: {news['articles'][0]['title']}")
 ```
 
 ### Tools with Model Router
@@ -81,15 +81,16 @@ tools = [
     {
         "type": "function",
         "function": {
-            "name": "find_person_wikipedia_page",
-            "description": "Find Wikipedia page for a person",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "person_name": {"type": "string", "description": "Person name"}
-                },
-                "required": ["person_name"]
-            }
+                    "name": "search_wikipedia",
+        "description": "Search Wikipedia for information",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "query": {"type": "string", "description": "Search query"},
+                "limit": {"type": "integer", "description": "Maximum results"}
+            },
+            "required": ["query"]
+        }
         }
     }
 ]
@@ -322,19 +323,20 @@ response = model_router(
 ### Test Individual Tools
 ```python
 # Test BBC RSS
-from tools.tool_modules.bbc_rss import get_bbc_public_figures
+from ultimate_llm_toolkit.bbc_rss import get_bbc_public_figures
 result = get_bbc_public_figures()
 print(f"BBC RSS test: {result.get('total_figures', 0)} figures found")
 
 # Test Wikipedia
-from tools.tool_modules.wikipedia_api import find_person_wikipedia_page
-result = find_person_wikipedia_page("Donald Trump")
+from ultimate_llm_toolkit.wikipedia_api import search_wikipedia
+result = search_wikipedia("Donald Trump", limit=1)
 print(f"Wikipedia test: {'Success' if result.get('success') else 'Failed'}")
 
-# Test Web Search
-from tools.tool_modules.web_search_brave import search_web
-results = search_web("test query", count=1)
-print(f"Web search test: {len(results)} results found")
+# Test using toolkit
+from ultimate_llm_toolkit import LLMToolkit
+toolkit = LLMToolkit()
+news = toolkit.get_news()
+print(f"News test: {len(news.get('articles', []))} articles found")
 ```
 
 ### Test Model Router
@@ -388,7 +390,7 @@ BRAVE_API_KEY=your_brave_key
 
 ### Check Environment
 ```python
-from config.model_router import list_available_models
+from ultimate_llm_toolkit.model_router import list_available_models
 
 # Check available models
 models = list_available_models()

@@ -4,13 +4,8 @@ from typing import Dict, List, Optional, Any, Union
 from dotenv import load_dotenv
 
 # Import the existing clients
-try:
-    from .aws_bedrock import bedrock_client
-    from .azure import client as azure_client
-except ImportError:
-    # Fallback for direct execution
-    from aws_bedrock import bedrock_client
-    from azure import client as azure_client
+from .aws_bedrock import bedrock_client
+from .azure import get_client
 
 # Load environment variables
 load_dotenv()
@@ -301,7 +296,7 @@ def call_azure_openai(
             completion_params["stop"] = kwargs["stop_sequences"]
         
         # Make the API call
-        completion = azure_client.chat.completions.create(**completion_params)
+        completion = get_client().chat.completions.create(**completion_params)
         
         # Extract the response
         response_content = completion.choices[0].message.content

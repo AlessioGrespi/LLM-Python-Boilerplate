@@ -317,4 +317,4 @@ To add support for new models or providers:
 
 ## License
 
-This project is part of the Ultimate AI Personal Assistant project. 
+This project is part of the LLM Python Boilerplate project. 

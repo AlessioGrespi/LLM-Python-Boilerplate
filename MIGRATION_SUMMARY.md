@@ -22,14 +22,14 @@ Successfully moved all test files from the `config/` directory to a dedicated `t
 ## Directory Structure
 
 ```
-Ultimate-AI-Personal-Assistant/
-├── config/
-│   ├── model_router.py          # Main router implementation
-│   ├── aws_bedrock.py           # AWS Bedrock client
-│   ├── azure.py                 # Azure OpenAI client
-│   ├── example_usage.py         # Usage examples
-│   ├── README.md                # Documentation
-│   └── TESTING_SUMMARY.md       # Test documentation
+LLM-Python-Boilerplate/
+├── src/
+│   └── ultimate_llm_toolkit/    # Main package with LLM tools
+│       ├── model_router.py      # Main router implementation
+│       ├── aws_bedrock.py       # AWS Bedrock client
+│       ├── azure.py             # Azure OpenAI client
+│       ├── example_usage.py     # Usage examples
+│       └── __init__.py          # Package exports
 ├── tests/
 │   ├── __init__.py              # Package init
 │   ├── test_model_router.py     # Unit and integration tests

@@ -1,4 +1,4 @@
-# Ultimate AI Personal Assistant - System Documentation
+# LLM Python Boilerplate - System Documentation
 
 ## Table of Contents
 1. [Overview](#overview)
@@ -13,7 +13,7 @@
 
 ## Overview
 
-The Ultimate AI Personal Assistant is a sophisticated system that provides:
+The LLM Python Boilerplate is a sophisticated system that provides:
 - **Unified Model Interface**: Seamlessly switch between AWS Bedrock and Azure OpenAI models
 - **Modular Tool System**: Extensible tools for web search, news, Wikipedia, and more
 - **Chained Tool Execution**: Combine multiple tools for complex workflows
@@ -48,7 +48,7 @@ The model router provides a unified interface for different AI providers.
 ### Basic Usage
 
 ```python
-from config.model_router import model_router
+from ultimate_llm_toolkit.model_router import model_router
 
 # Simple prompt
 response = model_router(
@@ -158,7 +158,7 @@ for result in results:
 The tool registry (`tools/config/tool_index.py`) defines all available tools:
 
 ```python
-from tools.config.tool_index import get_tool_info, list_available_tools
+from ultimate_llm_toolkit.tool_index import get_tool_info, list_available_tools
 
 # List all available tools
 tools = list_available_tools()
@@ -467,7 +467,7 @@ except Exception as e:
 ### Complete Research Workflow
 
 ```python
-from config.model_router import model_router
+from ultimate_llm_toolkit.model_router import model_router
 from tools.tool_modules.bbc_rss import get_bbc_public_figures
 from tools.tool_modules.wikipedia_api import find_person_wikipedia_page
 
@@ -593,7 +593,7 @@ interactive_chat()
 1. **Model Not Found**
    ```python
    # Check available models
-   from config.model_router import list_available_models
+   from ultimate_llm_toolkit.model_router import list_available_models
    models = list_available_models()
    print(f"AWS models: {models['aws']}")
    print(f"Azure models: {models['azure']}")
@@ -655,7 +655,7 @@ WEATHER_API_KEY=your_weather_key
 
 ## Conclusion
 
-This documentation provides a comprehensive guide to using the Ultimate AI Personal Assistant system. The modular architecture makes it easy to extend with new tools and models while maintaining a consistent interface.
+This documentation provides a comprehensive guide to using the LLM Python Boilerplate system. The modular architecture makes it easy to extend with new tools and models while maintaining a consistent interface.
 
 For additional examples and testing, see the `tests/` directory for comprehensive test cases and demonstrations.
 

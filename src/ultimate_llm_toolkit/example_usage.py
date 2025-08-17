@@ -5,7 +5,7 @@ This script demonstrates how to use the model_router to call different models
 from AWS Bedrock and Azure OpenAI seamlessly.
 """
 
-from model_router import model_router, list_available_models, add_model_mapping
+from .model_router import model_router, list_available_models, add_model_mapping
 
 def example_basic_usage():
     """Example of basic usage with different models."""

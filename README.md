@@ -1,15 +1,13 @@
-# Ultimate AI Personal Assistant
+# LLM Python Boilerplate
 
 A comprehensive AI personal assistant with support for multiple LLM providers, tool integration, and various deployment options.
 
 ## Project Structure
 
 ```
-Ultimate-AI-Personal-Assistant/
+LLM-Python-Boilerplate/
 ├── src/                    # Core source code
-│   ├── core/              # Core functionality (model router, configs, tools)
-│   ├── agents/            # AI agent implementations
-│   └── utils/             # Utility functions
+│   └── ultimate_llm_toolkit/  # Main package with LLM tools
 ├── demos/                 # Demo applications
 │   ├── flask/            # Flask API demos
 │   ├── interactive/      # Interactive CLI demos
@@ -20,12 +18,23 @@ Ultimate-AI-Personal-Assistant/
 │   ├── unit/             # Unit tests
 │   ├── debug/            # Debug utilities
 │   └── run_all_tests.py  # Test runner
-├── docs/                  # Documentation
-├── legacy/               # Legacy code (deprecated)
-└── v0.1/                 # Legacy version (ignored by git)
+├── config/                # Configuration files
+└── docs/                  # Documentation files
 ```
 
 ## Quick Start
+
+### Installation
+
+```bash
+# From local development
+git clone https://github.com/AlessioGrespi/LLM-Python-Boilerplate.git
+cd LLM-Python-Boilerplate
+pip install -e .
+
+# From GitHub
+pip install git+https://github.com/AlessioGrespi/LLM-Python-Boilerplate.git
+```
 
 ### Running Demos
 
@@ -63,9 +72,9 @@ python -m pytest tests/api/
 
 The assistant supports multiple LLM providers:
 
-- **Azure OpenAI** - Configure in `src/core/azure.py`
-- **AWS Bedrock** - Configure in `src/core/aws_bedrock.py`
-- **Model Router** - Unified interface in `src/core/model_router.py`
+- **Azure OpenAI** - Configure in `src/ultimate_llm_toolkit/azure.py`
+- **AWS Bedrock** - Configure in `src/ultimate_llm_toolkit/aws_bedrock.py`
+- **Model Router** - Unified interface in `src/ultimate_llm_toolkit/model_router.py`
 
 ## Features
 
@@ -79,16 +88,19 @@ The assistant supports multiple LLM providers:
 
 ## Documentation
 
-- [System Documentation](SYSTEM_DOCUMENTATION.md)
-- [Quick Reference](QUICK_REFERENCE.md)
-- [Migration Guide](MIGRATION_SUMMARY.md)
-- [Chained Tools Summary](CHAINED_TOOLS_SUMMARY.md)
+- [System Documentation](SYSTEM_DOCUMENTATION.md) - Comprehensive technical overview and architecture
+- [Quick Reference](QUICK_REFERENCE.md) - Fast access to common commands and patterns
+- [Usage Examples](USAGE_EXAMPLES.md) - Practical examples for integrating the library
+- [Environment Setup](ENV_SETUP.md) - Step-by-step environment configuration
+- [Migration Guide](MIGRATION_SUMMARY.md) - Project structure changes and updates
+- [Chained Tools Summary](CHAINED_TOOLS_SUMMARY.md) - Tool orchestration and workflows
+- [Conversation Testing](CONVERSATION_TESTING_SUMMARY.md) - Testing conversation capabilities
 
 ## Development
 
 ### Adding New Tools
 
-1. Create your tool module in `src/core/`
+1. Create your tool module in `src/ultimate_llm_toolkit/`
 2. Register it in the tool router
 3. Add tests in `tests/integration/`
 
