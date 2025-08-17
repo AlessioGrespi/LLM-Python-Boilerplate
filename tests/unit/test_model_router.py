@@ -10,10 +10,8 @@ import json
 import sys
 import os
 
-# Add the src/core directory to the path so we can import the modules
-sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', 'src', 'core'))
-
-from model_router import (
+# Import from the ultimate_llm_toolkit package
+from ultimate_llm_toolkit.model_router import (
     model_router,
     get_provider_for_model,
     call_aws_bedrock,
@@ -78,7 +76,7 @@ class TestModelRouter(unittest.TestCase):
             get_provider_for_model("unknown-model-123")
         self.assertIn("Unrecognized model", str(context.exception))
 
-    @patch('model_router.bedrock_client')
+    @patch('ultimate_llm_toolkit.model_router.bedrock_client')
     def test_call_aws_bedrock_basic(self, mock_bedrock_client):
         """Test basic AWS Bedrock call."""
         # Mock the response
@@ -120,7 +118,7 @@ class TestModelRouter(unittest.TestCase):
         self.assertEqual(call_args["inferenceConfig"]["temperature"], 0.7)
         self.assertEqual(call_args["inferenceConfig"]["maxTokens"], 100)
 
-    @patch('model_router.bedrock_client')
+    @patch('ultimate_llm_toolkit.model_router.bedrock_client')
     def test_call_aws_bedrock_with_messages(self, mock_bedrock_client):
         """Test AWS Bedrock call with message history."""
         mock_response = {

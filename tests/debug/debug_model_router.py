@@ -8,10 +8,8 @@ import sys
 import os
 import json
 
-# Add the necessary paths
-sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', 'src', 'core'))
-
-from model_router import model_router
+# Import from the ultimate_llm_toolkit package
+from ultimate_llm_toolkit.model_router import model_router
 
 
 def test_model_router_with_tools():

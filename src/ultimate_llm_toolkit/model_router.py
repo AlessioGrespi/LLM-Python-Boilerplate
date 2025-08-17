@@ -3,12 +3,12 @@ import os
 from typing import Dict, List, Optional, Any, Union
 from dotenv import load_dotenv
 
+# Load environment variables FIRST, before any other imports
+load_dotenv()
+
 # Import the existing clients
 from .aws_bedrock import bedrock_client
 from .azure import get_client
-
-# Load environment variables
-load_dotenv()
 
 # Model mapping configuration
 MODEL_MAPPING = {

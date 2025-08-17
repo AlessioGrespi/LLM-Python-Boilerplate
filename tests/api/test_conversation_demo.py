@@ -13,13 +13,10 @@ import os
 import json
 from typing import Dict, List, Any
 
-# Add the necessary paths
-sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', 'src', 'core'))
-sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'tools', 'tool_modules'))
-
-from model_router import model_router
-from bbc_rss import get_bbc_public_figures
-from wikipedia_api import find_person_wikipedia_page
+# Import from the ultimate_llm_toolkit package
+from ultimate_llm_toolkit.model_router import model_router
+from ultimate_llm_toolkit.bbc_rss import get_bbc_public_figures
+from ultimate_llm_toolkit.wikipedia_api import find_person_wikipedia_page
 
 
 class ConversationDemo:

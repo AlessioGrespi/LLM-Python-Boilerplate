@@ -11,12 +11,9 @@ import os
 from typing import Dict, List, Any
 from datetime import datetime
 
-# Add the necessary paths
-sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', 'src', 'core'))
-sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'tools', 'tool_modules'))
-
-from bbc_rss import get_bbc_rss_feed
-from wikipedia_api import find_person_wikipedia_page
+# Import from the ultimate_llm_toolkit package
+from ultimate_llm_toolkit.bbc_rss import get_bbc_rss_feed
+from ultimate_llm_toolkit.wikipedia_api import find_person_wikipedia_page
 
 
 def get_london_headlines_today():
@@ -113,7 +110,7 @@ def get_jair_bolsonaro_wikipedia():
             
             # Try alternative search
             print("\n🔄 Trying alternative search...")
-            from wikipedia_api import search_wikipedia
+            from ultimate_llm_toolkit.wikipedia_api import search_wikipedia
             search_result = search_wikipedia("Jair Bolsonaro", limit=3)
             
             if search_result.get("success") and search_result["results"]:

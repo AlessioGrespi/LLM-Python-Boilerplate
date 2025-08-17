@@ -7,10 +7,8 @@ This script shows how the router automatically falls back to mistral-small when 
 import sys
 import os
 
-# Add the config directory to the path so we can import the modules
-sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', 'src', 'core'))
-
-from model_router import model_router
+# Import from the ultimate_llm_toolkit package
+from ultimate_llm_toolkit.model_router import model_router
 
 
 def demo_fallback_functionality():

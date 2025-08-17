@@ -6,10 +6,7 @@ import os
 # Load environment variables from .env file
 load_dotenv()
 
-# Access the environment variables
-aws_access_key_id = os.getenv("AWS_ACCESS_KEY_ID")
-aws_secret_access_key = os.getenv("AWS_SECRET_ACCESS_KEY")
-aws_region = os.getenv("AWS_REGION")
+# We'll access environment variables when needed, not at module level
 
 def get_bedrock_client():
     """
@@ -22,6 +19,11 @@ def get_bedrock_client():
     Raises:
         ValueError: If required AWS credentials are not configured
     """
+    # Access environment variables when the function is called
+    aws_access_key_id = os.getenv("AWS_ACCESS_KEY_ID")
+    aws_secret_access_key = os.getenv("AWS_SECRET_ACCESS_KEY")
+    aws_region = os.getenv("AWS_REGION")
+    
     if not aws_region:
         raise ValueError("AWS_REGION environment variable is not set")
     

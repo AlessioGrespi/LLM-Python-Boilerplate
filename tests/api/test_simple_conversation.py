@@ -8,11 +8,8 @@ import sys
 import os
 from typing import Dict, List, Any
 
-# Add the necessary paths
-sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', 'src', 'core'))
-sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'tools', 'tool_modules'))
-
-from model_router import model_router
+# Import from the ultimate_llm_toolkit package
+from ultimate_llm_toolkit.model_router import model_router
 
 
 def test_single_tool_call():

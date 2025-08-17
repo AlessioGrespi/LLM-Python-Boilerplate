@@ -38,7 +38,7 @@ class LLMToolkit:
     def _check_environment(self):
         """Check if required environment variables are configured."""
         required_vars = {
-            'aws': ['AWS_ACCESS_KEY_ID', 'AWS_SECRET_ACCESS_KEY', 'AWS_DEFAULT_REGION'],
+            'aws': ['AWS_ACCESS_KEY_ID', 'AWS_SECRET_ACCESS_KEY', 'AWS_REGION'],
             'azure': ['AZURE_OPENAI_API_KEY', 'AZURE_OPENAI_ENDPOINT']
         }
         
