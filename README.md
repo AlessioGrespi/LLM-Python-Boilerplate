@@ -91,6 +91,7 @@ The assistant supports multiple LLM providers:
 - [System Documentation](SYSTEM_DOCUMENTATION.md) - Comprehensive technical overview and architecture
 - [Quick Reference](QUICK_REFERENCE.md) - Fast access to common commands and patterns
 - [Usage Examples](USAGE_EXAMPLES.md) - Practical examples for integrating the library
+- [LLM Cheat Sheet](LLM_CHEAT_SHEET.md) - **NEW!** Quick reference for LLMs to use the library
 - [Environment Setup](ENV_SETUP.md) - Step-by-step environment configuration
 - [Migration Guide](MIGRATION_SUMMARY.md) - Project structure changes and updates
 - [Chained Tools Summary](CHAINED_TOOLS_SUMMARY.md) - Tool orchestration and workflows
